@@ -1,0 +1,66 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #3b055f;
+    color: #111111;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgb(209, 209, 209);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+input[type="number"], input[type="text"] {
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #201c8d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #33991a;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    background-color: #ea737b;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#budgetSummary p {
+    font-size: 18px;
+    font-weight: bold;
+}
