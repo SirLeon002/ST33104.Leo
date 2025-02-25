@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Planner with Graphic Data</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include Chart.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Budget Planner</h1>
+
+        <!-- Income Section -->
+        <div class="section">
+            <label for="income">Monthly Income: </label>
+            <input type="number" id="income" placeholder="Enter your income" />
+        </div>
+
+        <!-- Expense Section -->
+        <div class="section">
+            <label for="expenseName">Expense Name: </label>
+            <input type="text" id="expenseName" placeholder="Expense name" />
+            
+            <label for="expenseAmount">Expense Amount: </label>
+            <input type="number" id="expenseAmount" placeholder="Amount" />
+            
+            <button id="addExpenseBtn">Add Expense</button>
+        </div>
+
+        <!-- Expense List -->
+        <h2>Expenses</h2>
+        <ul id="expenseList"></ul>
+
+        <!-- Budget Summary -->
+        <div id="budgetSummary" class="section">
+            <p>Total Income: $<span id="totalIncome">0</span></p>
+            <p>Total Expenses: $<span id="totalExpenses">0</span></p>
+            <p>Remaining Budget: $<span id="remainingBudget">0</span></p>
+        </div>
+
+        <!-- Chart Section -->
+        <canvas id="budgetChart"></canvas>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include Chart.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Center the canvas and make it responsive */
+        canvas {
+            display: block;
+            max-width: 100%;
+            height: 400px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- Chart Section -->
+    <canvas id="budgetChart"></canvas>
+
+    <script>
+        // Get the context of the canvas element
+        const ctx = document.getElementById('budgetChart').getContext('2d');
+
+        // Define the data for the pie chart
+        const data = {
+            labels: ['Income', 'Housing', 'Groceries', 'Entertainment', 'Others'],
+            datasets: [{
+                label: 'Budget Breakdown',
+                data: [5000, 1500, 800, 600, 200], // Example data values
+                backgroundColor: ['#2ecc71', '#3498db', '#f39c12', '#e74c3c', '#9b59b6'],
+                borderColor: '#fff',
+                borderWidth: 1,
+            }]
+        };
+
+        // Define the chart configuration
+        const config = {
+            type: 'pie', // Pie chart type
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top', // Legend position at the top
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                // Customize the tooltip label to display value and percentage
+                                return tooltipItem.label + ': $' + tooltipItem.raw + ' (' + tooltipItem.formattedValue + '%)';
+                            }
+                        }
+                    },
+                    datalabels: {
+                        formatter: (value, context) => {
+                            return context.chart.data.labels[context.dataIndex] + ': $' + value;
+                        },
+                        color: 'white',
+                        font: {
+                            weight: 'bold',
+                        },
+                    }
+                }
+            }
+        };
+
+        // Create the chart
+        const budgetChart = new Chart(ctx, config);
+    </script>
+
+</body>
+</html> 
